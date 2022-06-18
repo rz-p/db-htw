@@ -17,6 +17,10 @@ public class BueroDto {
 
     // TODO: add missing fields
 
+    private double raumhoehe;
+
+    private double flaeche;
+
 
     public String getName() {
         return name;
@@ -41,4 +45,22 @@ public class BueroDto {
     public void setKapazitaet(final int kapazitaet) {
         this.kapazitaet = kapazitaet;
     }
+
+    public double getRaumhoehe() {
+        return raumhoehe;
+    }
+
+    public void setRaumhoehe(double raumhoehe) {
+        this.raumhoehe = raumhoehe;
+    }
+
+    public double getFlaeche() {
+        return flaeche;
+    }
+
+    public void setFlaeche(double flaeche) {
+        this.flaeche = flaeche;
+    }
 }
+
+

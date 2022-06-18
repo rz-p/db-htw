@@ -152,6 +152,8 @@ public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
         bueroRaum.setRaumnummer(template.getRaumnummer());
         bueroRaum.setKapazitaet(template.getKapazitaet());
         // TODO initialize missing fields
+        bueroRaum.setFlaeche(template.getFlaeche());
+        bueroRaum.setHoehe(template.getRaumhoehe());
         save(bueroRaum);
         return bueroRaum;
     }

@@ -79,6 +79,8 @@ class BueroRaumEntityServiceTest {
         bueroRaum.setRaumnummer(roomNumber);
         bueroRaum.setName(name);
         bueroRaum.setKapazitaet(2);
+        bueroRaum.setRaumhoehe(2.5);
+        bueroRaum.setFlaeche(35.4);
 
         final BueroRaum from = bueroRaumEntityService.createFrom(bueroRaum);
 
@@ -88,6 +90,9 @@ class BueroRaumEntityServiceTest {
         assertThat(bueroRaumOptional.get().getRaumnummer()).isEqualTo(roomNumber);
         assertThat(bueroRaumOptional.get().getKapazitaet()).isEqualTo(2);
         // TODO alle Attribute prüfen
+        assertThat(bueroRaumOptional.get().getFlaeche()).isEqualTo(2.5);
+        assertThat(bueroRaumOptional.get().getFlaeche()).isEqualTo(35.4);
+
     }
 
 }

@@ -5,30 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3740fce2-8d2b-497d-b994-cfcbe4e9bdd6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/saveactions_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Readme.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/JdbcSampleApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/entities/ArbeitsRaum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/entities/BueroRaum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/entities/Entity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/entities/Raum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/services/BueroRaumEntityService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/web/BueroRaumMvcController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/static/main.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/buero-detail.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/bueros.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/uni-schema.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/de/htw_berlin/imi/db/services/BueroRaumEntityServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/services/BueroRaumEntityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/services/BueroRaumEntityService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/web/BueroDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/web/BueroDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/bueros.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/bueros.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/de/htw_berlin/imi/db/services/BueroRaumEntityServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/htw_berlin/imi/db/services/BueroRaumEntityServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +64,7 @@
     "project.structure.side.proportion": "0.2",
     "rearrange.code.on.save": "true",
     "settings.editor.selected.configurable": "settings.saveactions",
-    "spring.configuration.checksum": "cb5c5601fc261f3bfef8cf4101b93a6d"
+    "spring.configuration.checksum": "1e903913bb9262b1071e647859674ee8"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -100,7 +82,7 @@
       <recent name="de.htw_berlin.imi.db.services" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BueroRaumEntityServiceTest.cannotfindById">
+  <component name="RunManager" selected="JUnit.BueroRaumEntityServiceTest.save">
     <configuration name="BueroRaumEntityServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="htw-jdbc-sample" />
       <extension name="coverage">
@@ -117,7 +99,7 @@
       </method>
     </configuration>
     <configuration name="BueroRaumEntityServiceTest.cannotfindById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="htw-jdbc-sample" />
+      <module name="htw-jdbc-pramadhan-madhaji" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="de.htw_berlin.imi.db.services.*" />
@@ -148,6 +130,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="BueroRaumEntityServiceTest.save" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="htw-jdbc-pramadhan-madhaji" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="de.htw_berlin.imi.db.services.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="de.htw_berlin.imi.db.services" />
+      <option name="MAIN_CLASS_NAME" value="de.htw_berlin.imi.db.services.BueroRaumEntityServiceTest" />
+      <option name="METHOD_NAME" value="save" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="htw-jdbc-sample" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="de.htw_berlin.imi.db.JdbcSampleApplication" />
@@ -155,8 +153,16 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="JdbcSampleApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="htw-jdbc-pramadhan-madhaji" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="de.htw_berlin.imi.db.JdbcSampleApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.BueroRaumEntityServiceTest.save" />
         <item itemvalue="JUnit.BueroRaumEntityServiceTest.cannotfindById" />
         <item itemvalue="JUnit.BueroRaumEntityServiceTest" />
         <item itemvalue="JUnit.BueroRaumEntityServiceTest.findAll" />
@@ -173,6 +179,7 @@
       <updated>1654336066859</updated>
       <workItem from="1654336068733" duration="8678000" />
       <workItem from="1654350807770" duration="3229000" />
+      <workItem from="1655545090978" duration="3753000" />
     </task>
     <servers />
   </component>
