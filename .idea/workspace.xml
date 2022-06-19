@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3740fce2-8d2b-497d-b994-cfcbe4e9bdd6" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/services/BueroRaumEntityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/services/BueroRaumEntityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/web/BueroDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/web/BueroDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/bueros.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/bueros.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/de/htw_berlin/imi/db/services/BueroRaumEntityServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/de/htw_berlin/imi/db/services/BueroRaumEntityServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,7 +53,7 @@
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "last_opened_file_path": "C:/Users/Gerald/IdeaProjects/htw-jdbc-sample/src/main/resources/templates",
+    "last_opened_file_path": "/Users/rizki/IdeaProjects/htw-jdbc-sample-2",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
@@ -82,7 +80,7 @@
       <recent name="de.htw_berlin.imi.db.services" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BueroRaumEntityServiceTest.save">
+  <component name="RunManager" selected="Spring Boot.Application">
     <configuration name="BueroRaumEntityServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="htw-jdbc-sample" />
       <extension name="coverage">
@@ -147,7 +145,17 @@
       </method>
     </configuration>
     <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <module name="htw-jdbc-sample" />
+      <option name="ACTIVE_PROFILES" />
+      <option name="ALTERNATIVE_JRE_PATH" value="azul-17" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+      <module name="htw-jdbc-sample-2" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="de.htw_berlin.imi.db.JdbcSampleApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="JdbcSampleApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="htw-jdbc-sample-2" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="de.htw_berlin.imi.db.JdbcSampleApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -179,7 +187,8 @@
       <updated>1654336066859</updated>
       <workItem from="1654336068733" duration="8678000" />
       <workItem from="1654350807770" duration="3229000" />
-      <workItem from="1655545090978" duration="3753000" />
+      <workItem from="1655545090978" duration="4701000" />
+      <workItem from="1655551995368" duration="2859000" />
     </task>
     <servers />
   </component>

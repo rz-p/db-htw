@@ -124,7 +124,10 @@ public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
 
     private void createOfficePart(final BueroRaum e, final PreparedStatement officePreparedStatement) throws SQLException {
         // TODO set parameters
+        // officePreparedStatement.executeUpdate(e.getName(),e.);
+        officePreparedStatement.execute()
         final int update = officePreparedStatement.executeUpdate();
+
         if (update != 1) {
             throw new SQLException("Could not create (office) part");
         }
@@ -158,3 +161,4 @@ public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
         return bueroRaum;
     }
 }
+//
