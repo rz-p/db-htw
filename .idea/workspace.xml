@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3740fce2-8d2b-497d-b994-cfcbe4e9bdd6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/services/BueroRaumEntityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/de/htw_berlin/imi/db/services/BueroRaumEntityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/bueros.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/bueros.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +59,7 @@
     "project.structure.side.proportion": "0.2",
     "rearrange.code.on.save": "true",
     "settings.editor.selected.configurable": "settings.saveactions",
-    "spring.configuration.checksum": "1e903913bb9262b1071e647859674ee8"
+    "spring.configuration.checksum": "16198a23c9aaedf44865e51d5c9db8e3"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -189,6 +186,7 @@
       <workItem from="1654350807770" duration="3229000" />
       <workItem from="1655545090978" duration="4701000" />
       <workItem from="1655551995368" duration="2859000" />
+      <workItem from="1655644652485" duration="507000" />
     </task>
     <servers />
   </component>
