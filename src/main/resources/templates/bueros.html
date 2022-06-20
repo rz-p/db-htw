@@ -12,7 +12,7 @@
 <h3>New</h3>
 <div>
     <form th:action="@{'/ui/bueros'}"
-          th:object="${bueroTemplate}"
+          th:object="${BueroRaum}"
           method="POST"
           enctype="multipart/form-data"
           action="#">
@@ -32,6 +32,10 @@
         <div>
             <label>Raumfläche</label>
             <input id="Flaeche" type="number" th:field="*{flaeche}"/>
+        </div>
+        <div>
+            <label>Raumhöhe</label>
+            <input id="hoehe" type="number" th:field="*{raumhoehe}"/>
         </div>
         <!-- TODO: fehlende Attribute ergänzen -->
         <input type="submit" width="60" class="btn" value="save"/>

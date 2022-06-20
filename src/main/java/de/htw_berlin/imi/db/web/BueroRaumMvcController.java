@@ -18,14 +18,14 @@ public class BueroRaumMvcController {
         model.addAttribute("bueros", bueroRaumEntityService.findAll());
         // empty template object that accepts fiel values from
         // the HTML form when new office room objetcs are created
-        model.addAttribute("bueroTemplate", new BueroDto());
+        model.addAttribute("BueroRaum", new BueroDto());
         return "bueros";
     }
 
     @GetMapping("/{id}")
     String find(final Model model,
                 @PathVariable("id") final long id) {
-        model.addAttribute("buero",
+        model.addAttribute("BueroRaum",
                 bueroRaumEntityService
                         .findById(id)
                         .orElseThrow(IllegalArgumentException::new));
@@ -33,7 +33,7 @@ public class BueroRaumMvcController {
     }
 
     @PostMapping("")
-    String createBuero(@ModelAttribute("bueroTemplate") final BueroDto bueroTemplate) {
+    String createBuero(@ModelAttribute("BueroRaum") final BueroDto bueroTemplate) {
         bueroRaumEntityService.createFrom(bueroTemplate);
         // causes a page reload
         return "redirect:/ui/bueros";

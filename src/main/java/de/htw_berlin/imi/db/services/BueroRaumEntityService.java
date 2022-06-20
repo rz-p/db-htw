@@ -124,8 +124,7 @@ public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
 
     private void createOfficePart(final BueroRaum e, final PreparedStatement officePreparedStatement) throws SQLException {
         // TODO set parameters
-        // officePreparedStatement.executeUpdate(e.getName(),e.);
-        officePreparedStatement.execute()
+        officePreparedStatement.setLong(1, e.getId());
         final int update = officePreparedStatement.executeUpdate();
 
         if (update != 1) {
@@ -135,6 +134,8 @@ public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
 
     private void createWorkRoomPart(final BueroRaum e, final PreparedStatement workPreparedStatement) throws SQLException {
         // TODO set parameters
+        workPreparedStatement.setLong(1, e.getId());
+        workPreparedStatement.setInt(2, e.getKapazitaet());
         final int update = workPreparedStatement.executeUpdate();
         if (update != 1) {
             throw new SQLException("Could not create (work room) part");
@@ -143,6 +144,12 @@ public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
 
     private void createBaseClassPart(final BueroRaum e, final PreparedStatement basePreparedStatement) throws SQLException {
         // TODO set parameters
+        basePreparedStatement.setLong(1, e.getId());
+        basePreparedStatement.setString(2, e.getName());
+        basePreparedStatement.setString(3, e.getRaumnummer());
+        basePreparedStatement.setDouble(4, e.getFlaeche());
+        basePreparedStatement.setDouble(5, e.getHoehe());
+
         final int update = basePreparedStatement.executeUpdate();
         if (update != 1) {
             throw new SQLException("Could not create (room) part");
