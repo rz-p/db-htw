@@ -19,6 +19,7 @@ public abstract class AbstractEntityService<E extends Entity> extends DatabaseCl
 
     @Autowired
     protected IdGenerator idGenerator;
+    protected MatrikelnummerGenerator matrikelnummerGenerator;
 
     /**
      * @return an empty entity, initialized with a new, unique

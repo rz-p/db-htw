@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="/main.css">
+    <title>Büros</title>
+</head>
+
+<body>
+<h2>Büros</h2>
+
+<h3>New</h3>
+<div>
+    <!-- TODO: change attributes -->
+    <form th:action="@{'/ui/bueros'}"
+          th:object="${Studierenden}"
+          method="POST"
+          enctype="multipart/form-data"
+          action="#">
+        <div>
+            <label>Matrikel Nummer</label>
+            <input id="MatrikelNummer" type="text" th:field="*{matrikelnummer}"/>
+        </div>
+        <div>
+            <label>Name</label>
+            <input id="Name" type="text" th:field="*{name}"
+                   placeholder="Enter Name"/>
+        </div>
+        <div>
+            <label>Vorname</label>
+            <input id="Vorname" type="text" th:field="*{vorname}"
+                   placeholder="Enter Given Name"/>
+        </div>
+        <div>
+            <label>Geburtsdatum</label>
+            <input id="Geburtsdatum" type="number" th:field="*{geburtsdatum}"/>
+        </div>
+        <div>
+            <label>Geburtsort</label>
+            <input id="Geburtsort" type="text" th:field="*{geburtsort}"/>
+        </div>
+        <div>
+            <label>Anzahl Semester</label>
+            <input id="Anzahl_Semester" type="number" th:field="*{anzahl_semester}"/>
+        </div>
+        <div>
+            <label>Studienbeginn</label>
+            <input id="Studienbeginn" type="number" th:field="*{studienbeginn}"/>
+        </div>
+        <!-- TODO: fehlende Attribute ergänzen -->
+        <input type="submit" width="60" class="btn" value="save"/>
+    </form>
+</div>
+
+<h3>List</h3>
+<table>
+    <thead>
+    <tr>
+        <td>Matrikelnummer</td>
+        <td>Name</td>
+        <td>Vorname</td>
+        <td>Geburtsdatum</td>
+        <td>Geburtsort</td>
+        <td>Anzahl Semester</td>
+        <td>Studienbeginn</td>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr th:each="b: ${studierenden}" th:value="${s}">
+        <td>
+            <span th:text="${s.id}"></span>
+        </td>
+        <td>
+            <a th:href="@{'/ui/studierenden/' + ${s.id}}">
+                <span th:text="${b.name}"></span>
+            </a>
+        </td>
+        <td>
+            <span th:text="${s.vorname}"></span>
+        </td>
+        <td>
+            <span th:text="${s.geburtsdatum}"></span>
+        </td>
+        <td>
+            <span th:text="${s.geburtsort}"></span>
+        </td>
+        <td>
+            <span th:text="${s.anzahl_semester}"></span>
+        </td>
+        <td>
+            <span th:text="${s.studienbeginn}"></span>
+        </td>
+        </a>
+    </tr>
+    </tbody>
+
+
+</table>
+</body>

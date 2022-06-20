@@ -89,9 +89,8 @@ class BueroRaumEntityServiceTest {
         assertThat(bueroRaumOptional.get().getName()).isEqualTo(name);
         assertThat(bueroRaumOptional.get().getRaumnummer()).isEqualTo(roomNumber);
         assertThat(bueroRaumOptional.get().getKapazitaet()).isEqualTo(2);
-        // TODO alle Attribute prüfen
-        assertThat(bueroRaumOptional.get().getFlaeche()).isEqualTo(2.5);
         assertThat(bueroRaumOptional.get().getFlaeche()).isEqualTo(35.4);
+        assertThat(bueroRaumOptional.get().getFlaeche()).isEqualTo(2.5);
 
     }
 

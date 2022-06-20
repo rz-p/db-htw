@@ -221,5 +221,31 @@ FROM uni.Raeume r
          JOIN uni.Arbeitsraeume a ON a.id = r.id
          JOIN uni.Bueroraeume b ON b.id = r.id;
 
+CREATE VIEW uni.v_Seminarraeume
+AS
+SELECT s.id,
+       r.name,
+       r.raumnummer,
+       r.flaeche,
+       r.raumhoehe as hoehe,
+       r.stockwerk as stockwerk_id,
+       a.kapazitaet
+FROM uni.Raeume r
+         JOIN uni.Arbeitsraeume a ON a.id = r.id
+         JOIN uni.Seminarraeume s ON s.id = r.id;
+
+CREATE VIEW uni.v_Studierende
+AS
+SELECT matr_nr AS id,
+       name,
+       vorname,
+       geburtsdatum,
+       geburtsort,
+       anzahl_semester,
+       studienbeginn
+FROM uni.studierende s;
+
 CREATE SEQUENCE IF NOT EXISTS uni.id_sequence
     START 1000;
+CREATE SEQUENCE  IF NOT EXISTS uni.id_matrikelnummer
+    START 50000;
