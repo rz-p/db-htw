@@ -15,8 +15,6 @@ public class BueroDto {
 
     private int kapazitaet;
 
-    // TODO: add missing fields
-
     private double raumhoehe;
 
     private double flaeche;

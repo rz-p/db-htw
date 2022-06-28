@@ -3,23 +3,22 @@
 
 <head>
     <link href="/main.css" rel="stylesheet" type="text/css">
-    <title>Büros</title>
+    <title>Seminarräume</title>
 </head>
 
 <body>
-<h2>Büros</h2>
+<h2>Seminarräume</h2>
 
 <h3>New</h3>
 <div>
     <form action="#"
           enctype="multipart/form-data"
           method="POST"
-          th:action="@{'/ui/bueros'}"
-          th:object="${BueroRaum}">
+          th:action="@{'/ui/seminarraeume'}"
+          th:object="${Seminarraum}">
         <div>
             <label>name</label>
-            <input id="Name" placeholder="Enter Name" th:field="*{name}"
-                   type="text"/>
+            <input id="Name" placeholder="Enter Name" th:field="*{name}" type="text"/>
         </div>
         <div>
             <label>Raumnummer</label>
@@ -35,7 +34,7 @@
         </div>
         <div>
             <label>Raumhöhe</label>
-            <input id="hoehe" th:field="*{raumhoehe}" type="float"/>
+            <input id="Hoehe" th:field="*{hoehe}" type="float"/>
         </div>
 
         <input class="btn" type="submit" value="save" width="60"/>
@@ -56,31 +55,31 @@
     </thead>
 
     <tbody>
-    <tr th:each="b: ${bueros}" th:value="${b}">
+    <tr th:each="s: ${seminarraeume}" th:value="${s}">
         <td>
-            <span th:text="${b.id}"></span>
+            <span th:text="${s.id}"></span>
         </td>
         <td>
-            <a th:href="@{'/ui/bueros/' + ${b.id}}">
-                <span th:text="${b.name}"></span>
+            <a th:href="@{'/ui/seminarraeume/' + ${s.id}}">
+                <span th:text="${s.name}"></span>
             </a>
         </td>
         <td>
-            <span th:text="${b.raumnummer}"></span>
+            <span th:text="${s.raumnummer}"></span>
         </td>
         <td>
-            <span th:text="${b.kapazitaet}"></span>
+            <span th:text="${s.kapazitaet}"></span>
         </td>
         <td>
-            <span th:text="${b.hoehe}"></span>
+            <span th:text="${s.hoehe}"></span>
         </td>
         <td>
-            <span th:text="${b.flaeche}"></span>
+            <span th:text="${s.flaeche}"></span>
         </td>
         <td>
             <form action="#"
                   enctype="multipart/form-data"
-                  th:action="@{'/ui/bueros/'+ ${b.id}}"
+                  th:action="@{'/ui/seminarraeume/'+ ${s.id}}"
                   th:method="DELETE">
                 <input class="btn" type="submit" value="Delete" width="60"/>
             </form>

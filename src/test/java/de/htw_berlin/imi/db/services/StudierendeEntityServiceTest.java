@@ -75,7 +75,6 @@ class StudierendeEntityServiceTest {
     @Test
     void createFrom() {
         final StudierendeDto studierende = new StudierendeDto();
-        studierende.setMatrikelnummer()
         studierende.setName("Potter");
         studierende.setVorname("Harry");
         studierende.setGeburtsdatum("24.03.1984");

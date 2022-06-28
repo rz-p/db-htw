@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Implements the DAO (data access object) pattern for BueroRaum.
+ * Implements the DAO (data access object) pattern for Studierende.
  * <p>
  * Classes annotated with @Service can be injected using @Autowired
  * in other Spring components.
@@ -49,7 +49,7 @@ public class StudierendeEntityService extends AbstractEntityService<Studierende>
     public List<Studierende> findAll() {
         final List<Studierende> result = new ArrayList<>();
         try {
-            final ResultSet resultSet = query(FIND_ALL_QUERY);
+            final ResultSet resultSet = query(FIND_ALL_QUERY, false);
             while (resultSet.next()) {
                 result.add(getStudierende(resultSet));
             }
@@ -62,7 +62,7 @@ public class StudierendeEntityService extends AbstractEntityService<Studierende>
     @Override
     public Optional<Studierende> findById(final long id) {
         try {
-            final ResultSet resultSet = query(FIND_BY_ID_QUERY + id);
+            final ResultSet resultSet = query(FIND_BY_ID_QUERY + id, false);
             if (resultSet.next()) {
                 return Optional.of(getStudierende(resultSet));
             }
@@ -73,7 +73,7 @@ public class StudierendeEntityService extends AbstractEntityService<Studierende>
     }
 
     private Studierende getStudierende(final ResultSet resultSet) throws SQLException {
-        final long id = resultSet.getInt("id");
+        final long id = resultSet.getLong("id");
         final Studierende entity = new Studierende(id);
         entity.setName(resultSet.getString("name"));
         entity.setVorname(resultSet.getString("vorname"));
@@ -86,14 +86,14 @@ public class StudierendeEntityService extends AbstractEntityService<Studierende>
 
     @Override
     public Studierende create() {
-        return new Studierende(idGenerator.generate());
+        return new Studierende(matrikelnummerGenerator.generate());
     }
 
     @Override
     public void save(final Studierende e) {
         log.debug("insert: {}", INSERT_BASE_QUERY);
         try {
-            final Connection connection = getConnection();
+            final Connection connection = getConnection(false);
             connection.setAutoCommit(false);
             try (final PreparedStatement basePreparedStatement = getPreparedStatement(connection, INSERT_BASE_QUERY)) {
 
@@ -110,8 +110,18 @@ public class StudierendeEntityService extends AbstractEntityService<Studierende>
         }
     }
 
+    @Override
+    public void update(Studierende entity) {
+
+    }
+
+    @Override
+    public void delete(Studierende entity) {
+
+    }
+
     private void createBaseClassPart(final Studierende e, final PreparedStatement basePreparedStatement) throws SQLException {
-        // TODO set parameters
+
         basePreparedStatement.setLong(1, e.getId());
         basePreparedStatement.setString(2, e.getName());
         basePreparedStatement.setString(3, e.getVorname());
@@ -127,11 +137,12 @@ public class StudierendeEntityService extends AbstractEntityService<Studierende>
     }
 
     public Studierende createFrom(final StudierendeDto template) {
+
         final Studierende studierende = create();
+
         studierende.setName(template.getName());
         studierende.setVorname(template.getVorname());
         studierende.setGeburtsdatum(template.getGeburtsdatum());
-        // TODO initialize missing fields
         studierende.setGeburtsort(template.getGeburtsort());
         studierende.setAnzahl_semester(template.getAnzahl_semester());
         studierende.setStudienbeginn(template.getStudienbeginn());

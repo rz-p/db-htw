@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <title>Seminarräume</title>
+</head>
+
+<body>
+<h2>Seminarräume</h2>
+
+<div th:each="s: ${seminarraeume}" th:value="${s}">
+    <div>
+        <label>Id</label>
+        <span th:text="${s.id}"></span>
+    </div>
+    <div>
+        <label>Name</label>
+        <span th:text="${s.name}"></span>
+    </div>
+    <div>
+        <label>Raumnummer</label>
+        <span th:text="${s.raumnummer}"></span>
+    </div>
+    <div>
+        <label>Kapazität</label>
+        <span th:text="${s.kapazitaet}"></span>
+    </div>
+    <div>
+        <label>Höhe</label>
+        <span th:text="${s.hoehe}"></span>
+    </div>
+    <div>
+        <label>Fläche</label>
+        <span th:text="${s.flaeche}"></span>
+    </div>
+
+</div>
+</body>

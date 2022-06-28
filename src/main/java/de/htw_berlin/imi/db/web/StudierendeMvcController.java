@@ -18,14 +18,14 @@ public class StudierendeMvcController {
         model.addAttribute("studierenden", studierendeEntityService.findAll());
         // empty template object that accepts fiel values from
         // the HTML form when new office room objetcs are created
-        model.addAttribute("Studierende", new StudierendeDto());
+        model.addAttribute("studierenden", new StudierendeDto());
         return "studierenden";
     }
 
     @GetMapping("/{id}")
     String find(final Model model,
                 @PathVariable("id") final long id) {
-        model.addAttribute("Studierende",
+        model.addAttribute("studierende",
                 studierendeEntityService
                         .findById(id)
                         .orElseThrow(IllegalArgumentException::new));
@@ -33,10 +33,19 @@ public class StudierendeMvcController {
     }
 
     @PostMapping("")
-    String createStudierende(@ModelAttribute("Studierende") final StudierendeDto studierendeTemplate) {
-        studierendeEntityService.createFrom(studierendeTemplate);
+    String createStudierende(@ModelAttribute("studierenden") final StudierendeDto studierendenTemplate) {
+        studierendeEntityService.createFrom(studierendenTemplate);
         // causes a page reload
         return "redirect:/ui/studierenden";
     }
+
+    /*@DeleteMapping("/{id}")
+    String deleteStudierende(@PathVariable("id") final long id) {
+        Optional<Studierende> studierende = studierendeEntityService.findById(id);
+        //Source from https://stackoverflow.com/questions/42977137/creating-an-object-from-optionalobject
+        Seminarraum a = studierende.stream().findFirst().orElse(null);
+        studierendeEntityServicee.delete(a);
+        return "redirect:/ui/seminarraeume";
+    }*/
 
 }

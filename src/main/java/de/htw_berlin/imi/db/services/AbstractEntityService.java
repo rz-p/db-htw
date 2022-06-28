@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +32,12 @@ public abstract class AbstractEntityService<E extends Entity> extends DatabaseCl
      */
     public abstract void save(E entity);
 
+    public abstract void update(E entity) throws SQLException;
+
+    public abstract void delete(E entity);
+
     public abstract List<E> findAll();
 
     public abstract Optional<E> findById(final long id);
+
 }

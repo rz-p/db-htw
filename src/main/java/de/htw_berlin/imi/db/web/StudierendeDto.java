@@ -8,8 +8,7 @@ package de.htw_berlin.imi.db.web;
  * Objects of this class simply hold field values
  */
 public class StudierendeDto {
-
-
+    
     private String name;
 
     private String vorname;

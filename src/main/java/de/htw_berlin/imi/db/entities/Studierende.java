@@ -5,9 +5,7 @@ package de.htw_berlin.imi.db.entities;
  */
 public class Studierende extends Entity {
 
-
-    private int materikelnummer;
-
+    private long matr_nr;
     private String name;
 
     private String vorname;
@@ -70,5 +68,13 @@ public class Studierende extends Entity {
 
     public void setStudienbeginn(String studienbeginn) {
         this.studienbeginn = studienbeginn;
+    }
+
+    public long getMatr_nr() {
+        return matr_nr;
+    }
+
+    public void setMatr_nr(long matr_nr) {
+        this.matr_nr = matr_nr;
     }
 }

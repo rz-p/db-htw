@@ -3,36 +3,40 @@
 
 <head>
     <link href="/main.css" rel="stylesheet" type="text/css">
-    <title>Büros</title>
+    <title>Studierenden</title>
 </head>
 
 <body>
-<h2>Büro</h2>
+<h2>Studierenden</h2>
 
-<div th:each="b: ${bueros}" th:value="${b}">
+<div th:each="s: ${studierende}" th:value="${s}">
     <div>
-        <label>Id</label>
-        <span th:text="${b.id}"></span>
+        <label>Matrikelnummer</label>
+        <span th:text="${s.id}"></span>
     </div>
     <div>
         <label>Name</label>
-        <span th:text="${b.name}"></span>
+        <span th:text="${s.name}"></span>
     </div>
     <div>
-        <label>Raumnummer</label>
-        <span th:text="${b.raumnummer}"></span>
+        <label>Vorame</label>
+        <span th:text="${s.vorname}"></span>
     </div>
     <div>
-        <label>Kapazität</label>
-        <span th:text="${b.kapazitaet}"></span>
+        <label>Geburtsdatum</label>
+        <span th:text="${s.geburtsdatum}"></span>
     </div>
     <div>
-        <label>Höhe</label>
-        <span th:text="${b.hoehe}"></span>
+        <label>Geburtsort</label>
+        <span th:text="${s.geburtsort}"></span>
     </div>
     <div>
-        <label>Fläche</label>
-        <span th:text="${b.flaeche}"></span>
+        <label>Anzahl Semester</label>
+        <span th:text="${s.anzahl_semester}"></span>
+    </div>
+    <div>
+        <label>Studienbeginn</label>
+        <span th:text="${s.studienbeginn}"></span>
     </div>
 
 </div>

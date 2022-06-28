@@ -1,7 +1,7 @@
 package de.htw_berlin.imi.db.services;
 
-import de.htw_berlin.imi.db.entities.BueroRaum;
-import de.htw_berlin.imi.db.web.BueroDto;
+import de.htw_berlin.imi.db.entities.Seminarraum;
+import de.htw_berlin.imi.db.web.SeminarraeumeDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +23,7 @@ import java.util.Optional;
  */
 @Service
 @Slf4j
-public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
-
+public class SeminarraumEntityService extends AbstractEntityService<Seminarraum> {
 
     private static final String FIND_ALL_QUERY = """
                 SELECT
@@ -35,7 +34,7 @@ public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
                    ,hoehe
                    ,kapazitaet
                    ,stockwerk_id
-                FROM uni.v_bueros
+                FROM uni.v_Seminarraeume
             """;
 
     private static final String INSERT_BASE_QUERY = """
@@ -48,13 +47,12 @@ public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
                 VALUES (?, ?);
             """;
 
-    private static final String INSERT_OFFICE_ROOM = """
-            INSERT INTO uni.Bueroraeume (id)
+    private static final String INSERT_SEMINAR_ROOM = """
+            INSERT INTO uni.Seminarraeume (id)
                 VALUES (?);
             """;
 
     private static final String FIND_BY_ID_QUERY = FIND_ALL_QUERY + " WHERE ID = ";
-
 
     //TODO: Add Query for delete
     private static final String DELETE_BASE_QUERY = """
@@ -65,8 +63,8 @@ public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
             DELETE FROM uni.Arbeitsraeume WHERE id = ?;
             """;
 
-    private static final String DELETE_OFFICE_QUERY = """
-            DELETE FROM uni.Bueroraeume WHERE id = ?;
+    private static final String DELETE_SEMINAR_QUERY = """
+            DELETE FROM uni.Seminarraeume WHERE id = ?;
             """;
 
 
@@ -79,35 +77,35 @@ public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
             """;
 
     @Override
-    public List<BueroRaum> findAll() {
-        final List<BueroRaum> result = new ArrayList<>();
+    public List<Seminarraum> findAll() {
+        final List<Seminarraum> result = new ArrayList<>();
         try {
             final ResultSet resultSet = query(FIND_ALL_QUERY, false);
             while (resultSet.next()) {
-                result.add(getBueroRaum(resultSet));
+                result.add(getSeminarRaum(resultSet));
             }
         } catch (final Exception e) {
-            log.error("Problem finding bueros {}", e.getMessage());
+            log.error("Problem finding seminarraeume {}", e.getMessage());
         }
         return result;
     }
 
     @Override
-    public Optional<BueroRaum> findById(final long id) {
+    public Optional<Seminarraum> findById(final long id) {
         try {
-            final ResultSet resultSet = query(FIND_BY_ID_QUERY + id, true);
+            final ResultSet resultSet = query(FIND_BY_ID_QUERY + id, false);
             if (resultSet.next()) {
-                return Optional.of(getBueroRaum(resultSet));
+                return Optional.of(getSeminarRaum(resultSet));
             }
         } catch (final Exception e) {
-            log.error("Problem finding buero by id {}", e.getMessage());
+            log.error("Problem finding seminarraum by id {}", e.getMessage());
         }
         return Optional.empty();
     }
 
-    private BueroRaum getBueroRaum(final ResultSet resultSet) throws SQLException {
+    private Seminarraum getSeminarRaum(final ResultSet resultSet) throws SQLException {
         final long id = resultSet.getInt("id");
-        final BueroRaum entity = new BueroRaum(id);
+        final Seminarraum entity = new Seminarraum(id);
         entity.setName(resultSet.getString("name"));
         entity.setFlaeche(resultSet.getDouble("flaeche"));
         entity.setHoehe(resultSet.getDouble("hoehe"));
@@ -117,26 +115,26 @@ public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
     }
 
     @Override
-    public BueroRaum create() {
-        return new BueroRaum(idGenerator.generate());
+    public Seminarraum create() {
+        return new Seminarraum(idGenerator.generate());
     }
 
     @Override
-    public void save(final BueroRaum e) {
+    public void save(final Seminarraum e) {
         log.debug("insert: {}", INSERT_BASE_QUERY);
         try {
             final Connection connection = getConnection(false);
             connection.setAutoCommit(false);
             try (final PreparedStatement basePreparedStatement = getPreparedStatement(connection, INSERT_BASE_QUERY);
                  final PreparedStatement workPreparedStatement = getPreparedStatement(connection, INSERT_WORK_ROOM);
-                 final PreparedStatement officePreparedStatement = getPreparedStatement(connection, INSERT_OFFICE_ROOM)) {
+                 final PreparedStatement seminarPreparedStatement = getPreparedStatement(connection, INSERT_SEMINAR_ROOM)) {
 
                 createBaseClassPart(e, basePreparedStatement);
                 createWorkRoomPart(e, workPreparedStatement);
-                createOfficePart(e, officePreparedStatement);
+                createOfficePart(e, seminarPreparedStatement);
                 connection.commit();
             } catch (final SQLException ex) {
-                log.error("Error creating office, aborting {}", ex.getMessage());
+                log.error("Error creating seminarraum, aborting {}", ex.getMessage());
                 connection.rollback();
                 throw new RuntimeException(ex);
             }
@@ -146,84 +144,7 @@ public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
         }
     }
 
-    @Override
-    public void update(final BueroRaum e) {
-        log.debug("update: {}", e);
-        try {
-            final Connection connection = getConnection(false);
-            connection.setAutoCommit(false);
-            try (final PreparedStatement updateBasePreparedStatement = getPreparedStatement(connection, UPDATE_BASE_QUERY);
-            ) {
-
-                updateBasePreparedStatement(e, updateBasePreparedStatement);
-                connection.commit();
-            } catch (final SQLException ex) {
-                log.error("Error creating office, aborting {}", ex.getMessage());
-                connection.rollback();
-                throw new RuntimeException(ex);
-            }
-        } catch (final SQLException ex) {
-            log.error("Could not get connection.");
-            throw new RuntimeException(ex);
-        }
-    }
-
-
-    @Override
-    public void delete(final BueroRaum e) {
-        log.debug("delete: {}", DELETE_BASE_QUERY);
-        try {
-            final Connection connection = getConnection(false);
-            connection.setAutoCommit(false);
-            try (final PreparedStatement baseDelPreparedStatement = getPreparedStatement(connection, DELETE_BASE_QUERY);
-                 final PreparedStatement workDelPreparedStatement = getPreparedStatement(connection, DELETE_WORK_QUERY);
-                 final PreparedStatement officeDelPreparedStatement = getPreparedStatement(connection, DELETE_OFFICE_QUERY)) {
-
-                baseDelPreparedStatement(e, baseDelPreparedStatement);
-                workDelPreparedStatement(e, workDelPreparedStatement);
-                officeDelPreparedStatement(e, officeDelPreparedStatement);
-                connection.commit();
-            } catch (final SQLException ex) {
-                log.error("Error creating office, aborting {}", ex.getMessage());
-                connection.rollback();
-                throw new RuntimeException(ex);
-            }
-
-        } catch (final SQLException ex) {
-            log.error("Could not get connection.");
-            throw new RuntimeException(ex);
-        }
-    }
-
-    private void officeDelPreparedStatement(BueroRaum e, PreparedStatement officeDelPreparedStatement) throws SQLException {
-        officeDelPreparedStatement.setLong(1, e.getId());
-        final int update = officeDelPreparedStatement.executeUpdate();
-
-        if (update != 1) {
-            throw new SQLException("Could not delete (office) part");
-        }
-    }
-
-    private void workDelPreparedStatement(BueroRaum e, PreparedStatement workDelPreparedStatement) throws SQLException {
-        workDelPreparedStatement.setLong(1, e.getId());
-        final int update = workDelPreparedStatement.executeUpdate();
-
-        if (update != 1) {
-            throw new SQLException("Could not delete (work room) part");
-        }
-    }
-
-    private void baseDelPreparedStatement(BueroRaum e, PreparedStatement baseDelPreparedStatement) throws SQLException {
-
-        baseDelPreparedStatement.setLong(1, e.getId());
-        final int update = baseDelPreparedStatement.executeUpdate();
-
-        if (update != 1) {
-            throw new SQLException("Could not delete (room) part");
-        }
-    }
-
-    private void createOfficePart(final BueroRaum e, final PreparedStatement officePreparedStatement) throws SQLException {
+    private void createOfficePart(final Seminarraum e, final PreparedStatement officePreparedStatement) throws SQLException {
         officePreparedStatement.setLong(1, e.getId());
         final int update = officePreparedStatement.executeUpdate();
 
@@ -232,7 +153,7 @@ public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
         }
     }
 
-    private void createWorkRoomPart(final BueroRaum e, final PreparedStatement workPreparedStatement) throws SQLException {
+    private void createWorkRoomPart(final Seminarraum e, final PreparedStatement workPreparedStatement) throws SQLException {
 
         workPreparedStatement.setLong(1, e.getId());
         workPreparedStatement.setInt(2, e.getKapazitaet());
@@ -243,7 +164,7 @@ public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
         }
     }
 
-    private void createBaseClassPart(final BueroRaum e, final PreparedStatement basePreparedStatement) throws SQLException {
+    private void createBaseClassPart(final Seminarraum e, final PreparedStatement basePreparedStatement) throws SQLException {
 
         basePreparedStatement.setLong(1, e.getId());
         basePreparedStatement.setString(2, e.getName());
@@ -257,29 +178,107 @@ public class BueroRaumEntityService extends AbstractEntityService<BueroRaum> {
         }
     }
 
-    private void updateBasePreparedStatement(final BueroRaum e, final PreparedStatement updateBasePreparedStatement) throws SQLException {
+    public Seminarraum createFrom(final SeminarraeumeDto template) {
+        final Seminarraum seminarRaum = create();
+        seminarRaum.setName(template.getName());
+        seminarRaum.setRaumnummer(template.getRaumnummer());
+        seminarRaum.setKapazitaet(template.getKapazitaet());
+        seminarRaum.setFlaeche(template.getFlaeche());
+        seminarRaum.setHoehe(template.getHoehe());
+        save(seminarRaum);
+        return seminarRaum;
+    }
 
-        updateBasePreparedStatement.setString(1, e.getName());
-        updateBasePreparedStatement.setString(2, e.getRaumnummer());
-        updateBasePreparedStatement.setDouble(3, e.getFlaeche());
-        updateBasePreparedStatement.setDouble(4, e.getHoehe());
-        updateBasePreparedStatement.setLong(5, e.getId());
+    @Override
+    public void update(Seminarraum e) {
+        log.debug("update: {}", e);
+        try {
+            final Connection connection = getConnection(false);
+            connection.setAutoCommit(false);
+            try (final PreparedStatement updateSeminarPreparedStatement = getPreparedStatement(connection, UPDATE_BASE_QUERY);
+            ) {
 
-        final int update = updateBasePreparedStatement.executeUpdate();
-        if (update != 1) {
-            throw new SQLException("Could not update (room) part");
+                updateSeminarPreparedStatement(e, updateSeminarPreparedStatement);
+                connection.commit();
+            } catch (final SQLException ex) {
+                log.error("Error creating office, aborting {}", ex.getMessage());
+                connection.rollback();
+                throw new RuntimeException(ex);
+            }
+        } catch (final SQLException ex) {
+            log.error("Could not get connection.");
+            throw new RuntimeException(ex);
         }
     }
 
-    public BueroRaum createFrom(final BueroDto template) {
-        final BueroRaum bueroRaum = create();
-        bueroRaum.setName(template.getName());
-        bueroRaum.setRaumnummer(template.getRaumnummer());
-        bueroRaum.setKapazitaet(template.getKapazitaet());
-        bueroRaum.setFlaeche(template.getFlaeche());
-        bueroRaum.setHoehe(template.getRaumhoehe());
-        save(bueroRaum);
-        return bueroRaum;
+    private void updateSeminarPreparedStatement(Seminarraum e, PreparedStatement updateSeminarPreparedStatement) throws SQLException {
+
+        updateSeminarPreparedStatement.setString(1, e.getName());
+        updateSeminarPreparedStatement.setString(2, e.getRaumnummer());
+        updateSeminarPreparedStatement.setDouble(3, e.getFlaeche());
+        updateSeminarPreparedStatement.setDouble(4, e.getHoehe());
+        updateSeminarPreparedStatement.setLong(5, e.getId());
+
+        final int update = updateSeminarPreparedStatement.executeUpdate();
+        if (update != 1) {
+            throw new SQLException("Could not update (room) part");
+        }
+
     }
+
+    @Override
+    public void delete(Seminarraum e) {
+        log.debug("delete: {}", DELETE_BASE_QUERY);
+        try {
+            final Connection connection = getConnection(false);
+            connection.setAutoCommit(false);
+            try (final PreparedStatement baseDelPreparedStatement = getPreparedStatement(connection, DELETE_BASE_QUERY);
+                 final PreparedStatement workDelPreparedStatement = getPreparedStatement(connection, DELETE_WORK_QUERY);
+                 final PreparedStatement seminarDelPreparedStatement = getPreparedStatement(connection, DELETE_SEMINAR_QUERY)) {
+
+                baseDelPreparedStatement(e, baseDelPreparedStatement);
+                workDelPreparedStatement(e, workDelPreparedStatement);
+                seminarDelPreparedStatement(e, seminarDelPreparedStatement);
+                connection.commit();
+            } catch (final SQLException ex) {
+                log.error("Error creating seminar roo, aborting {}", ex.getMessage());
+                connection.rollback();
+                throw new RuntimeException(ex);
+            }
+
+        } catch (final SQLException ex) {
+            log.error("Could not get connection.");
+            throw new RuntimeException(ex);
+        }
+    }
+
+    private void workDelPreparedStatement(final Seminarraum e, PreparedStatement workDelPreparedStatement) throws SQLException {
+        workDelPreparedStatement.setLong(1, e.getId());
+        final int update = workDelPreparedStatement.executeUpdate();
+
+        if (update != 1) {
+            throw new SQLException("Could not delete (work room) part");
+        }
+    }
+
+    private void baseDelPreparedStatement(final Seminarraum e, PreparedStatement baseDelPreparedStatement) throws SQLException {
+        baseDelPreparedStatement.setLong(1, e.getId());
+        final int update = baseDelPreparedStatement.executeUpdate();
+
+        if (update != 1) {
+            throw new SQLException("Could not delete (room) part");
+        }
+    }
+
+    private void seminarDelPreparedStatement(final Seminarraum e, PreparedStatement seminarDelPreparedStatement) throws SQLException {
+        seminarDelPreparedStatement.setLong(1, e.getId());
+        final int update = seminarDelPreparedStatement.executeUpdate();
+
+        if (update != 1) {
+            throw new SQLException("Could not delete (office) part");
+        }
+    }
+
+
 }
 //

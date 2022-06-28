@@ -3,24 +3,20 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="/main.css">
-    <title>Büros</title>
+    <title>Studierenden</title>
 </head>
 
 <body>
-<h2>Büros</h2>
+<h2>Studierenden</h2>
 
 <h3>New</h3>
 <div>
-    <!-- TODO: change attributes -->
-    <form th:action="@{'/ui/bueros'}"
-          th:object="${Studierenden}"
+    <form th:action="@{'/ui/studierenden'}"
+          th:object="${studierende}"
           method="POST"
           enctype="multipart/form-data"
           action="#">
-        <div>
-            <label>Matrikel Nummer</label>
-            <input id="MatrikelNummer" type="text" th:field="*{matrikelnummer}"/>
-        </div>
+
         <div>
             <label>Name</label>
             <input id="Name" type="text" th:field="*{name}"
@@ -47,7 +43,6 @@
             <label>Studienbeginn</label>
             <input id="Studienbeginn" type="number" th:field="*{studienbeginn}"/>
         </div>
-        <!-- TODO: fehlende Attribute ergänzen -->
         <input type="submit" width="60" class="btn" value="save"/>
     </form>
 </div>
@@ -67,13 +62,13 @@
     </thead>
 
     <tbody>
-    <tr th:each="b: ${studierenden}" th:value="${s}">
+    <tr th:each="s: ${studierende}" th:value="${s}">
         <td>
             <span th:text="${s.id}"></span>
         </td>
         <td>
             <a th:href="@{'/ui/studierenden/' + ${s.id}}">
-                <span th:text="${b.name}"></span>
+                <span th:text="${s.name}"></span>
             </a>
         </td>
         <td>
@@ -90,6 +85,14 @@
         </td>
         <td>
             <span th:text="${s.studienbeginn}"></span>
+        </td>
+        <td>
+            <form action="#"
+                  enctype="multipart/form-data"
+                  th:action="@{'/ui/studierenden'+ ${s.id}}"
+                  th:method="DELETE">
+                <input class="btn" type="submit" value="Delete" width="60"/>
+            </form>
         </td>
         </a>
     </tr>
